@@ -8,16 +8,10 @@ import { execSync } from "child_process";
  * @param sideLength The length of each side of the square in pixels.
  */
 export function drawSquare(turtle: Turtle, sideLength: number): void {
-  // TODO: Implement drawSquare
-  // Example (incorrect square, just to show usage):
-  turtle.forward(sideLength);
-  turtle.turn(90);
-  turtle.forward(sideLength);
-  turtle.turn(180);
-  turtle.forward(sideLength);
-  turtle.turn(90);
-  turtle.forward(sideLength);
-  turtle.turn(400);
+  for (let i = 0; i < 4; i++) {
+    turtle.forward(sideLength);
+    turtle.turn(90);
+  }
 }
 
 /**
