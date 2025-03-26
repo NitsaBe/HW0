@@ -40,7 +40,16 @@ export function drawApproximateCircle(
   radius: number,
   numSides: number
 ): void {
-  // TODO: Implement drawApproximateCircle
+  const anglePerSide = 360 / numSides;
+  // Calculating the chord length for each segment
+  const segmentLength = chordLength(radius, anglePerSide);
+  turtle.forward(radius);
+  turtle.turn(90);
+  // Drawing each segment of the approximated circle
+  for (let i = 0; i < numSides; i++) {
+    turtle.forward(segmentLength);
+    turtle.turn(anglePerSide);
+  }
 }
 
 /**
