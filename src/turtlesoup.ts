@@ -112,12 +112,58 @@ export function findPath(turtle: Turtle, points: Point[]): string[] {
  * @param turtle The turtle to use.
  */
 export function drawPersonalArt(turtle: Turtle): void {
-  // TODO: Implement drawPersonalArt
-  // Example - replace with your own art!
-  for (let i = 0; i < 6; i++) {
-    turtle.forward(50);
-    turtle.turn(60);
+  turtle.turn(270 - turtle.getHeading());
+
+  // Function to draw a butterfly wing
+  const drawWing = (size: number, color: Color) => {
+    turtle.color(color);
+    for (let i = 0; i < 2; i++) {
+      turtle.forward(size);
+      turtle.turn(60);
+      turtle.forward(size / 2);
+      turtle.turn(120);
+      turtle.forward(size / 2);
+      turtle.turn(60);
+      turtle.forward(size);
+      turtle.turn(180);
+    }
+  };
+
+  // Function to draw antenna spirals
+  const drawAntenna = (rotations: number, step: number) => {
+    turtle.color("black");
+    for (let i = 0; i < rotations * 10; i++) {
+      turtle.forward(i / step);
+      turtle.turn(36);
+    }
+  };
+
+  const colors: Color[] = ["purple", "blue", "magenta", "red"];
+
+  // Draw wings
+  for (let i = 0; i < 4; i++) {
+    drawWing(40 + i * 5, colors[i % colors.length]);
+    turtle.turn(90);
   }
+
+  // Center body
+  turtle.color("black");
+  turtle.turn(90);
+  turtle.forward(40);
+  turtle.turn(180);
+  turtle.forward(80);
+  turtle.turn(180);
+  turtle.forward(40);
+
+  // Antennas
+  turtle.turn(45);
+  turtle.forward(20);
+  drawAntenna(2, 5);
+  turtle.turn(180);
+  turtle.forward(20);
+  turtle.turn(90);
+  turtle.forward(20);
+  drawAntenna(2, 5);
 }
 
 function generateHTML(
